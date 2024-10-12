@@ -3,10 +3,10 @@ public class App {
         System.out.println("Hello, World!");
         System.out.println("Hola soy mateo");
         Metodos ordenador = new Metodos();
-        int[] arregloBurbuja = { 34, 2, 10, 6, 7, 5, 1, 15 };
-        int[] arregloBurbujaOrdenado1 = ordenador.burbujaTradicional(arregloBurbuja);
+        int[] arreglo = { 34, 2, 10, 6, 7, 5, 1, 15 };
+        int[] arregloBurbujaOrdenado1 = ordenador.burbujaTradicional(arreglo);
         System.out.println(
-        "Resultado burbuja tradicional Metodo 1 : " +
+        "Resultado arregloBurbuja tradicional Metodo 1 : " +
         java.util.Arrays.toString(arregloBurbujaOrdenado1));
     }
 }
