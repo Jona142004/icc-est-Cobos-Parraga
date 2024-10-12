@@ -1,4 +1,4 @@
-public class Hola {
+public class Interfaz {
     boolean h = true;
     String eleccion;
 }
