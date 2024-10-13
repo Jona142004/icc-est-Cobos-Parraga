@@ -2,18 +2,16 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Metodos {
-        public static int LeerEnteroValido(Scanner scanner, String mensaje, boolean permitirNegativos) {
+    public static int LeerEnteroValido(Scanner scanner, String mensaje, boolean permitirNegativos) {
         Interfaz interfaz = new Interfaz();
         System.out.println("Ingrese el tamanio del arreglo");
         int tamanio = interfaz.leerEnteroValido(scanner, "Ingrese el tamanio", false);33
         int [] arreglo = new int[tamanio];
         for(int k = 0; k < tamanio; k++ ){
             arreglo[k] = interfaz.leerEnteroValido(scanner, "Ingrese el valor de la posicion " + (k+1), true);
-            System.out.println("Hola Verito");
-            System.out.println("Holaaa");
+           
         }
     }
-
 
     public int[] burbujaTradicional(int[] arregloOriginal) {
         int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
@@ -23,9 +21,9 @@ public class Metodos {
             for (int j = i + 1; j < n; j++) {
                 if (arreglo[i] > arreglo[j]) {
                     // Intercambio de elementos
-                    int temp = arreglo[i];
+                    int aux = arreglo[i];
                     arreglo[i] = arreglo[j];
-                    arreglo[j] = temp;
+                    arreglo[j] = aux;
                 }
             }
         }
@@ -43,25 +41,43 @@ public class Metodos {
                     indiceMinimo = j;
                 }
             }
-            int smallerNumber = arreglo[indiceMinimo];
+            int numeromenor = arreglo[indiceMinimo];
             arreglo[indiceMinimo] = arreglo[i];
-            arreglo[i] = smallerNumber;
+            arreglo[i] = numeromenor;
         }
         return arreglo;
     }
 
-    public int[] insercion(int[] arregloOriginal) {
-
-        int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
-        for (int j = 1; j < arreglo.length; j++) {
-            int key = arreglo[j];
-            int i = j - 1;
-
-            while (i >= 0 && arreglo[i] > key) {
-                arreglo[i + 1] = arreglo[i];
-                i--;
+    public int[] insercion(int[] arreglo, boolean logs) {
+        int tam = arreglo.length;
+        for (int i = 1; i < tam; i++) {
+            if (logs) {
+                System.out.println("Pasada numero" + i);
             }
-            arreglo[i + 1] = key;
+
+            int aux = arreglo[i];
+            int j = i - 1;
+            if (logs) {
+                System.out.println("\ti=" + i + " j=" + j + " [i]=" + arreglo[i] + " [j]=" + arreglo[j]);
+            }
+
+            while (j >= 0 && arreglo[j] > aux) {
+                if (logs) {
+                    System.out.println("\t\tCompramos " + aux + " con " + arreglo[j]);
+                }
+
+                arreglo[j + 1] = arreglo[j];
+                j = j - 1;
+                arreglo[j + 1] = aux;
+                if (logs) {
+                    System.out.println("\t\t--------" + Arrays.toString(arreglo));
+                }
+
+            }
+            if (logs) {
+                System.out.println("\t--------" + Arrays.toString(arreglo));
+            }
+
         }
         return arreglo;
     }
@@ -91,9 +107,5 @@ public class Metodos {
             }
         }
         return arreglo;
-            }
+    }
 }
-
-
-
-
