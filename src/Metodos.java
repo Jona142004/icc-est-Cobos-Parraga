@@ -2,22 +2,39 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Metodos {
-    public static int LeerEnteroValido(Scanner scanner, String mensaje, boolean permitirNegativos) {
-        Interfaz interfaz = new Interfaz();
-        System.out.println("Ingrese el tamanio del arreglo");
-        int tamanio = interfaz.leerEnteroValido(scanner, "Ingrese el tamanio", false);33
-        int [] arreglo = new int[tamanio];
-        for(int k = 0; k < tamanio; k++ ){
-            arreglo[k] = interfaz.leerEnteroValido(scanner, "Ingrese el valor de la posicion " + (k+1), true);
-           
+    public  int menuOrdenPrint (Scanner scanner){
+        Metodos ordenar = new Metodos();
+        Scanner scanner = new Scanner(System.in);
+        Metodos metodo = new Metodos();
+        System.out.println("Elija el tipo de orden:");
+        System.out.println("1. Ascendente");
+        System.out.println("2. Descendente");
+        int tipoOrden = scanner.nextInt();
+        System.out.println("Desea imprimir el proceso (logs)?");
+        System.out.println("1. Si");
+        System.out.println("2. No");
+        int opcionLogs = scanner.nextInt();
+        boolean ascendente = true;
+        boolean logs = false;
+        switch (tipoOrden) {
+            case 1 -> ascendente = true;
+            case 2 -> ascendente = false;
+            default -> System.out.println("Opción inválida, se seleccionará el orden ascendente por defecto.");
+        }
+        switch (opcionLogs) {
+            case 1 -> logs = true;
+            case 2 -> logs = false;
+            default -> System.out.println("Opción inválida, se desactivarán los logs por defecto.");
         }
     }
-
-    public int[] burbujaTradicional(int[] arregloOriginal) {
-        int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
+    
+    public int[] burbuja(int[] arreglo, boolean logs, boolean ascendente) {
 
         int n = arreglo.length;
         for (int i = 0; i < n; i++) {
+            if (logs) {
+                System.out.println("Pasada numero" + i);
+            }
             for (int j = i + 1; j < n; j++) {
                 if (arreglo[i] > arreglo[j]) {
                     // Intercambio de elementos
@@ -30,25 +47,44 @@ public class Metodos {
         return arreglo;
     }
 
-    public int[] seleccion(int[] arregloOriginal) {
-
-        int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
-
+    public int[] seleccion(int[] arreglo, boolean logs, boolean ascendente) {
         for (int i = 0; i < arreglo.length - 1; i++) {
+            
             int indiceMinimo = i;
-            for (int j = i + 1; j < arreglo.length; j++) {
-                if (arreglo[j] < arreglo[indiceMinimo]) {
-                    indiceMinimo = j;
-                }
+            if (logs) {
+                System.out.println("Pasada numero" + i);
             }
-            int numeromenor = arreglo[indiceMinimo];
-            arreglo[indiceMinimo] = arreglo[i];
-            arreglo[i] = numeromenor;
+            for (int j = i + 1; j < arreglo.length; j++) {
+                
+                if (ascendente) {
+                    // Orden ascendente
+                    if (arreglo[j] < arreglo[indiceMinimo]) {
+                        indiceMinimo = j;
+                    }
+                } else {
+                    // Orden descendente
+                    if (arreglo[j] > arreglo[indiceMinimo]) {
+                        indiceMinimo = j;
+                    }
+
+                }
+                int numeromenor = arreglo[indiceMinimo];
+                arreglo[indiceMinimo] = arreglo[i];
+                arreglo[i] = numeromenor;
+                if (logs) {
+                    System.out.println("\tResultado intermedio: " + Arrays.toString(arreglo));
+                }
+
+            }
+
         }
         return arreglo;
+
     }
 
-    public int[] insercion(int[] arreglo, boolean logs) {
+    }
+
+    public int[] insercion(int[] arreglo, boolean logs, boolean ascendente) {
         int tam = arreglo.length;
         for (int i = 1; i < tam; i++) {
             if (logs) {
@@ -82,8 +118,8 @@ public class Metodos {
         return arreglo;
     }
 
-    public int[] sortBubbleTeaAva(int[] arregloOriginal) {
-        int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
+    public int[] BubbleTeaAva(int[] arreglo, boolean logs, boolean ascendente) {
+        
         int n = arreglo.length;
         boolean intercambio = false;
 
@@ -108,4 +144,8 @@ public class Metodos {
         }
         return arreglo;
     }
+    public void printArreglo(int[]arreglo){
+        for (int elemento : arreglo){ //for each el arreglo va instanciando cada elemento del arreglo se va almacenando
+            System.out.print(elemento + ",");
+        }
 }

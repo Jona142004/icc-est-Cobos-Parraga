@@ -2,8 +2,10 @@ import java.util.Scanner;
 
 public class Interfaz {
 
-
+    int[] arreglo;
     Scanner scanner = new Scanner(System.in);
+    boolean logs;
+    boolean ascendente;
 
     // Ingreso de numeros del arreglo
     public int[] ingresoArreglo(int tamanio){
@@ -111,19 +113,31 @@ public class Interfaz {
 
                 switch(segundaOpcion){
                     case 1: {
-                        System.out.println("METODO BURBUJA");
+                        Metodos metodos = new Metodos();
+                        arreglo = metodos.burbuja(arreglo, logs, ascendente);
+                        printArreglo(arreglo);
+                        
                         break;
                     }
                     case 2:{
-                        System.out.println("METODO SELECCION");
+                        Metodos metodos = new Metodos();
+                        arreglo = metodos.seleccion(arreglo, logs, ascendente);
+                        printArreglo(arreglo);
                         break;
                     }
                     case 3:{
-                        System.out.println("METODO INSERCION");
+                        Metodos metodos = new Metodos();
+                        arreglo = metodos.insercion(arreglo, logs, ascendente);
+                        printArreglo(arreglo);
+                        
                         break;
                     }
                     case 4:{
-                        System.out.println("METODO BURBUJA MEJORADO");
+                        Metodos metodos = new Metodos();
+                        arreglo = metodos.BubbleTeaAva(arreglo, logs, ascendente);
+                        printArreglo(arreglo);
+                        
+                        
                         break;
                     }
                     case 0:{
@@ -139,4 +153,18 @@ public class Interfaz {
             }
         }
     }
+    public void menuOrdenPrint(){
+        System.out.println("Elija el tipo de orden:");
+        System.out.println("1. Ascendente");
+        System.out.println("2. Descendente");
+        int tipoOrden = scanner.nextInt();
+        ascendente = tipoOrden == 1;
+
+        System.out.println("Desea imprimir el proceso (logs)?");
+        System.out.println("1. Si");
+        System.out.println("2. No");
+        int opcionLogs = scanner.nextInt();
+        logs = opcionLogs == 1;
+    }
+    
 }
