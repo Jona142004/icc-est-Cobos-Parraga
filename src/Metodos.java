@@ -2,7 +2,6 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Metodos {
-    public static void main(String[] args) throws Exception {
         public static int LeerEnteroValido(Scanner scanner, String mensaje, boolean permitirNegativos) {
         Scanner scanner = new Scanner(System.in);
         Interfaz interfaz = new Interfaz();
