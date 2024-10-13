@@ -84,7 +84,8 @@ public class Metodos {
         return arreglo;
     }
 
-    int[] sortBubbleTeaAva(int[] arreglo) {
+    int[] sortBubbleTeaAva(int[] arregloOriginal) {
+        int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
         int n = arreglo.length;
         boolean intercambio = false;
 
