@@ -15,27 +15,6 @@ public class Metodos {
         }
     }
     }
-
-        int numero;
-        do {
-
-            while (!scanner.hasNextInt()) {
-                System.out.println("Entrada invalida");
-                scanner.nextInt();
-            }
-            numero = scanner.nextInt();
-            if (!permitirNegativos && numero < 0) {
-                System.out.println(" No se permiten negativos");
-
-            }
-
-        } while (!permitirNegativos && numero < 0);
-        return numero;
-
-    }
-
-    }
-
     int opcion;
     Scanner scanner = new Scanner(System.in);
 
@@ -45,7 +24,7 @@ public class Metodos {
             System.out.println("1. Burbuja");
             System.out.println("2. Insercion");
             System.out.println("3. Seleccion ");       
-            System.out.println("4. Brujbuja Avazando");
+            System.out.println("4. Burbuja Avanzado");
             System.out.println("0. SALIR ");
 
             System.out.print("Elige una opcion: ");
@@ -105,7 +84,7 @@ public class Metodos {
         return arreglo;
     }
 
-    int[] sortBumbbleAva(int[] arreglo) {
+    int[] sortBubbleTeaAva(int[] arreglo) {
         int n = arreglo.length;
         boolean intercambio = false;
 
