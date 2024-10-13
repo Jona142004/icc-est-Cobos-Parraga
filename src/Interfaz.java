@@ -63,7 +63,7 @@ public class Interfaz {
                 switch(primeraOpcion){
                     case 1: {
                         int tamanio = leerEnteroValido(scanner, "Ingrese el tamanio del arreglo", false);
-                        int[] arreglo = ingresoArreglo(tamanio);
+                        arreglo = ingresoArreglo(tamanio);
                         printArreglo(arreglo);
                         validarOrden = true;
                         break;
