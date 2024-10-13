@@ -2,26 +2,13 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
-
-        Metodos ordenador = new Metodos();
         Scanner scanner = new Scanner(System.in);
-
-        // System.out.println("Ingrese el tamanio del arreglo");
-        public int leerEnteroValido(Scanner scanner, String mensaje, boolean permitirNegativo){
-            int numero;
-            do{
-                System.out.println(mensaje);
-                while(!scanner.hasNextInt()){   //hasNextIn devuelve true si y solo si el valor ingresado es un entero positivo
-                    System.out.println("Ingrese un entero valido");
-                    System.out.println(mensaje);
-                    scanner.next();
-                }
-                numero = scanner.nextInt();
-                if(!permitirNegativo && numero < 0 ){
-                    System.out.println("El tamanio debe ser entero positivo");
-                }
-            }while(!permitirNegativo && numero < 0);
-            return numero;
-        }
+        Interfaz interfaz = new Interfaz();
+        System.out.println("Ingrese el tamanio del arreglo");
+        int tamanio = interfaz.leerEnteroValido(scanner, "Ingrese el tamanio", false);33
+        int [] arreglo = new int[tamanio];
+        for(int k = 0; k < tamanio; k++ ){
+            arreglo[k] = interfaz.leerEnteroValido(scanner, "Ingrese el valor de la posicion " + (k+1), true);
+        } 
     }
 }
