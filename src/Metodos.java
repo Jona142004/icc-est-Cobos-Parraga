@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 public class Metodos {
         public static int LeerEnteroValido(Scanner scanner, String mensaje, boolean permitirNegativos) {
-        Scanner scanner = new Scanner(System.in);
         Interfaz interfaz = new Interfaz();
         System.out.println("Ingrese el tamanio del arreglo");
         int tamanio = interfaz.leerEnteroValido(scanner, "Ingrese el tamanio", false);33
@@ -14,26 +13,9 @@ public class Metodos {
             System.out.println("Holaaa");
         }
     }
-    }
-    int opcion;
-    Scanner scanner = new Scanner(System.in);
 
-    do{
-        //mostrar menu
-        System.out.println("      Menu Principal      ");
-            System.out.println("1. Burbuja");
-            System.out.println("2. Insercion");
-            System.out.println("3. Seleccion ");       
-            System.out.println("4. Burbuja Avanzado");
-            System.out.println("0. SALIR ");
 
-            System.out.print("Elige una opcion: ");
-        
-        opcion = scanner.nextInt();
-        switch (opcion) {
-                case 1:
-
-    int[] burbujaTradicional(int[] arregloOriginal) {
+    public int[] burbujaTradicional(int[] arregloOriginal) {
         int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
 
         int n = arreglo.length;
@@ -50,7 +32,7 @@ public class Metodos {
         return arreglo;
     }
 
-    int[] seleccion(int[] arregloOriginal) {
+    public int[] seleccion(int[] arregloOriginal) {
 
         int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
 
@@ -68,7 +50,7 @@ public class Metodos {
         return arreglo;
     }
 
-    int[] insercion(int[] arregloOriginal) {
+    public int[] insercion(int[] arregloOriginal) {
 
         int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
         for (int j = 1; j < arreglo.length; j++) {
@@ -84,7 +66,7 @@ public class Metodos {
         return arreglo;
     }
 
-    int[] sortBubbleTeaAva(int[] arregloOriginal) {
+    public int[] sortBubbleTeaAva(int[] arregloOriginal) {
         int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
         int n = arreglo.length;
         boolean intercambio = false;
@@ -112,6 +94,6 @@ public class Metodos {
             }
 }
 
-}while(opcion!=0);
+
 
 

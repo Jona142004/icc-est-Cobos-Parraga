@@ -5,12 +5,14 @@ public class App {
         Scanner scanner = new Scanner(System.in);
         Interfaz interfaz = new Interfaz();
         System.out.println("Ingrese el tamanio del arreglo");
-        int tamanio = interfaz.leerEnteroValido(scanner, "Ingrese el tamanio", false);33
+        int tamanio = interfaz.leerEnteroValido(scanner, "Ingrese el tamanio", false);
         int [] arreglo = new int[tamanio];
         for(int k = 0; k < tamanio; k++ ){
             arreglo[k] = interfaz.leerEnteroValido(scanner, "Ingrese el valor de la posicion " + (k+1), true);
         } 
+        interfaz.printArreglo(arreglo);
     }
+    
 }
 /*Scanner scanner = new Scanner(System.in);
         boolean exit = false; // Variable para controlar cuando salir del programa
