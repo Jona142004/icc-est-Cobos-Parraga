@@ -20,39 +20,10 @@ public class Interfaz {
         for(int elemento : arreglo){           //for each 
             System.out.print(elemento + ", ");     // Imprimir arreglo ingresado
         }
+        System.out.println();
     }
 
-    
-    //Menu principal
-    boolean exit = false;
-    public boolean menuPrincipal(Scanner ingreso){
-        int primeraOpcion;
-        boolean salir = false;
-        while(true){
-            System.out.println("MENU PRINCIPAL");
-            System.out.println("(1) Ingrese su arreglo");
-            System.out.println("(2) Ordenar Arreglo");
-            System.out.println("(0) Salir");
-            System.out.print("Elige una opción: ");
-
-            if (scanner.hasNextInt()) {
-                primeraOpcion = scanner.nextInt(); //Ingreso de opcion por consola
-                scanner.nextLine();
-
-                switch(primeraOpcion){
-                    case 1: {
-                        int tamanio = leerEnteroValido(scanner, "Ingrese el tamanio del arreglo", false);
-                        int[] arreglo = ingresoArreglo(tamanio);
-                        printArreglo(arreglo);
-                    }
-                }
-            }
-        }
-        return salir;
-    }
-
-
-    //Evitar ingreso de negativos y letras en tamanio, y letras en el arreglo 
+    //Validar los valores del tamanio y el arreglo
     public int leerEnteroValido(Scanner scanner, String mensaje, boolean permitirNegativo){
         int numero;
         do{
@@ -70,74 +41,102 @@ public class Interfaz {
         return numero;
     }
 
+    
+    //Menu principal
+    public boolean menuPrincipal(Scanner ingreso){
+        int primeraOpcion;
+        boolean fin = false;
+        boolean validarOrden = false;
+        while (!fin) {
+            System.out.println("MENU PRINCIPAL");
+            System.out.println("(1) Ingrese su arreglo");
+            System.out.println("(2) Ordenar Arreglo");
+            System.out.println("(0) Salir");
+            System.out.println("Elige una opción: ");
 
-    /*Scanner scanner = new Scanner(System.in);
-        boolean exit = false; // Variable para controlar cuando salir del programa
+            if (scanner.hasNextInt()) {
+                primeraOpcion = scanner.nextInt(); //Ingreso de opcion por consola
+                scanner.nextLine();
 
-        while (!exit) {
-            // Llamar al menú principal
-            exit = menuPrincipal(scanner);
-        }
-
-        System.out.println("Programa terminado.");
-        scanner.close();
-    }
-
-    // Método para el Menú Principal
-    public static boolean menuPrincipal(Scanner scanner) {
-        int opcion;
-        boolean salir = false;
-
-        while (true) {
-            System.out.println("\n--- MENÚ PRINCIPAL ---");
-            System.out.println("1. Ir al Menú Secundario");
-            System.out.println("2. Salir");
-            System.out.print("Elige una opción: ");
-
-            opcion = scanner.nextInt();
-
-            switch (opcion) {
-                case 1:
-                    // Ir al Menú Secundario
-                    salir = menuSecundario(scanner);
-                    if (salir) {
-                        return true; // Si selecciona salir desde el menú secundario, termina todo
+                switch(primeraOpcion){
+                    case 1: {
+                        int tamanio = leerEnteroValido(scanner, "Ingrese el tamanio del arreglo", false);
+                        int[] arreglo = ingresoArreglo(tamanio);
+                        printArreglo(arreglo);
+                        validarOrden = true;
+                        break;
                     }
-                    break;
-                case 2:
-                    // Opción de Salir
-                    System.out.println("Saliendo del programa...");
-                    return true; // Termina el programa
-                default:
+                    case 2:{
+                        // Ir al menu de Ordenamiento
+                        if (validarOrden){
+                            menuOrdenamiento(scanner); //menuOrdenamiento devuelve un booleano 
+                        } else {
+                            System.out.println("Primero debe de ingresar un arreglo");
+                        }
+                        break;
+                    }
+                    case 0:{
+                        fin = true;
+                        break;
+                    }
+                    default:
                     System.out.println("Opción no válida. Inténtalo de nuevo.");
+                }
+            } else {
+                System.out.println("Por favor, ingresa un número.");                // Si no es un entero, mostrar mensaje de error y limpiar el buffer
+                scanner.nextLine(); 
+            }
+        } 
+        return fin;
+    }
+
+    // Menu de Ordenamiento
+    public boolean menuOrdenamiento(Scanner scanner){
+        int segundaOpcion;
+
+        while(true){
+            System.out.println("MENU DE ORDENAMIENTO");
+            System.out.println("(1) Metodo Burbuja");
+            System.out.println("(2) Metodo Seleccion");
+            System.out.println("(3) Metodo Insercion");
+            System.out.println("(4) Metodo Burbuja Mejorado");
+            System.out.println("(0) Regresar al menu principal");
+            System.out.println("Elige una opción: ");
+
+
+            if (scanner.hasNextInt()) { 
+                //Validar que no ingrese nada diferente de un entero positivo
+                segundaOpcion = scanner.nextInt(); //Ingreso de opcion por consola
+                scanner.nextLine();
+
+                switch(segundaOpcion){
+                    case 1: {
+                        System.out.println("METODO BURBUJA");
+                        break;
+                    }
+                    case 2:{
+                        System.out.println("METODO SELECCION");
+                        break;
+                    }
+                    case 3:{
+                        System.out.println("METODO INSERCION");
+                        break;
+                    }
+                    case 4:{
+                        System.out.println("METODO BURBUJA MEJORADO");
+                        break;
+                    }
+                    case 0:{
+                        System.out.println("Regresando al menu principal...");
+                        return false;
+                    }
+                    default:
+                    System.out.println("Opción no válida. Inténtalo de nuevo.");
+                }
+            } else {
+                System.out.println("Por favor, ingresa un número."); // Si no es un entero, mostrar mensaje de error y limpiar el buffer
+                scanner.nextLine(); 
             }
         }
     }
-
-    // Método para el Menú Secundario
-    public static boolean menuSecundario(Scanner scanner) {
-        int opcion;
-
-        while (true) {
-            System.out.println("\n--- MENÚ SECUNDARIO ---");
-            System.out.println("1. Regresar al Menú Principal");
-            System.out.println("2. Salir");
-            System.out.print("Elige una opción: ");
-
-            opcion = scanner.nextInt();
-
-            switch (opcion) {
-                case 1:
-                    // Regresar al Menú Principal
-                    return false; // No salir del programa, solo regresar
-                case 2:
-                    // Opción de Salir
-                    System.out.println("Saliendo del programa...");
-                    return true; // Termina todo el programa
-                default:
-                    System.out.println("Opción no válida. Inténtalo de nuevo.");
-            }
-        }
-    } */
-
 }
