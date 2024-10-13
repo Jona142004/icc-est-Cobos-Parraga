@@ -2,10 +2,41 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Metodos {
-    public static int[] main(String[] args) throws Exception {
-        int opcion;
+    public static void main(String[] args) throws Exception {
+        public static int LeerEnteroValido(Scanner scanner, String mensaje, boolean permitirNegativos) {
         Scanner scanner = new Scanner(System.in);
+        Interfaz interfaz = new Interfaz();
+        System.out.println("Ingrese el tamanio del arreglo");
+        int tamanio = interfaz.leerEnteroValido(scanner, "Ingrese el tamanio", false);33
+        int [] arreglo = new int[tamanio];
+        for(int k = 0; k < tamanio; k++ ){
+            arreglo[k] = interfaz.leerEnteroValido(scanner, "Ingrese el valor de la posicion " + (k+1), true);
+        }
+    }
+    }
 
+        int numero;
+        do {
+
+            while (!scanner.hasNextInt()) {
+                System.out.println("Entrada invalida");
+                scanner.nextInt();
+            }
+            numero = scanner.nextInt();
+            if (!permitirNegativos && numero < 0) {
+                System.out.println(" No se permiten negativos");
+
+            }
+
+        } while (!permitirNegativos && numero < 0);
+        return numero;
+
+    }
+
+    }
+
+    int opcion;
+    Scanner scanner = new Scanner(System.in);
 
     do{
         //mostrar menu
@@ -98,8 +129,8 @@ public class Metodos {
         }
         return arreglo;
             }
-        }
+}
 
-    }while(opcion!=0);
-}
-}
+}while(opcion!=0);
+
+
