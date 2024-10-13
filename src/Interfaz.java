@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Interfaz {
 
+<<<<<<< HEAD
     Scanner scanner = new Scanner(System.in);
 
     // Ingreso de numeros del arreglo
@@ -9,9 +10,20 @@ public class Interfaz {
         int [] arreglo = new int[tamanio];
         for(int k = 0; k < tamanio; k++ ){
             arreglo[k] = leerEnteroValido(scanner, "Ingrese el valor de la posicion " + (k+1), true);
+=======
+    public int leerEnteroValido(Scanner scanner, String mensaje, boolean permitirNegativo){
+    int numero;
+    do{
+        System.out.println(mensaje);
+        while(!scanner.hasNextInt()){   //hasNextIn devuelve true si y solo si el valor ingresado es un entero positivo
+            System.out.println("Ingrese un entero valido");
+            System.out.println(mensaje);
+            scanner.next();
+>>>>>>> 3cdf25f1040ec37b20e6e4daaf8d2294db878246
         }
         return arreglo;
     }
+<<<<<<< HEAD
 
     //Imprimir el arreglo
     public void printArreglo(int[] arreglo){
@@ -139,4 +151,13 @@ public class Interfaz {
         }
     } */
     
+=======
+    public void printArreglo(int[]arreglo){
+        for (int i : arreglo){ //for each el arreglo va instanciando cada elemento del arreglo se va almacenando
+            System.out.print(i + "-");
+        }
+    
+
+    }
+>>>>>>> 3cdf25f1040ec37b20e6e4daaf8d2294db878246
 }
