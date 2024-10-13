@@ -11,6 +11,7 @@ public class Metodos {
         for(int k = 0; k < tamanio; k++ ){
             arreglo[k] = interfaz.leerEnteroValido(scanner, "Ingrese el valor de la posicion " + (k+1), true);
             System.out.println("Hola Verito");
+            System.out.println("Holaaa");
         }
     }
     }

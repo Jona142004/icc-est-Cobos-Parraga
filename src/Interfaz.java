@@ -4,6 +4,7 @@ public class Interfaz {
 
     public int leerEnteroValido(Scanner scanner, String mensaje, boolean permitirNegativo){
     int numero;
+    System.out.println("adjks");
     do{
         System.out.println(mensaje);
         while(!scanner.hasNextInt()){   //hasNextIn devuelve true si y solo si el valor ingresado es un entero positivo
@@ -17,6 +18,7 @@ public class Interfaz {
         }
     }while(!permitirNegativo && numero < 0);
     return numero;
-
     }
+    
+    
 }
