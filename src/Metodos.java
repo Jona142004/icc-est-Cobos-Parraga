@@ -1,7 +1,28 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Metodos {
-    public int[] burbujaTradicional(int[] arregloOriginal) {
+    public static int[] main(String[] args) throws Exception {
+        int opcion;
+        Scanner scanner = new Scanner(System.in);
+
+
+    do{
+        //mostrar menu
+        System.out.println("      Menu Principal      ");
+            System.out.println("1. Burbuja");
+            System.out.println("2. Insercion");
+            System.out.println("3. Seleccion ");       
+            System.out.println("4. Brujbuja Avazando");
+            System.out.println("0. SALIR ");
+
+            System.out.print("Elige una opcion: ");
+        
+        opcion = scanner.nextInt();
+        switch (opcion) {
+                case 1:
+
+    int[] burbujaTradicional(int[] arregloOriginal) {
         int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
 
         int n = arreglo.length;
@@ -18,7 +39,7 @@ public class Metodos {
         return arreglo;
     }
 
-    public int[] seleccion(int[] arregloOriginal) {
+    int[] seleccion(int[] arregloOriginal) {
 
         int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
 
@@ -36,7 +57,7 @@ public class Metodos {
         return arreglo;
     }
 
-    public int[] insercion(int[] arregloOriginal) {
+    int[] insercion(int[] arregloOriginal) {
 
         int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
         for (int j = 1; j < arreglo.length; j++) {
@@ -52,7 +73,7 @@ public class Metodos {
         return arreglo;
     }
 
-    public int[] sortBumbbleAva(int[] arreglo) {
+    int[] sortBumbbleAva(int[] arreglo) {
         int n = arreglo.length;
         boolean intercambio = false;
 
@@ -76,5 +97,9 @@ public class Metodos {
             }
         }
         return arreglo;
-    }
+            }
+        }
+
+    }while(opcion!=0);
+}
 }

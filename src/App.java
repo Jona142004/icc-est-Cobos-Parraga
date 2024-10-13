@@ -1,12 +1,58 @@
+import java.util.Scanner;
+
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
-        System.out.println("Hola soy mateo");
+
         Metodos ordenador = new Metodos();
-        int[] arreglo = { 34, 2, 10, 6, 7, 5, 1, 15 };
-        int[] arregloBurbujaOrdenado1 = ordenador.burbujaTradicional(arreglo);
-        System.out.println(
-        "Resultado arregloBurbuja tradicional Metodo 1 : " +
-        java.util.Arrays.toString(arregloBurbujaOrdenado1));
+        Scanner scanner = new Scanner(System.in);
+
+        // System.out.println("Ingrese el tamanio del arreglo");
+        int tam = 0;
+        do {
+            System.out.print("Ingrese el tamanio del arreglo");
+            while (!scanner.hasNextInt()) {
+                System.out.println("Entrada invalida");
+                System.out.println("Ingrese el tamanio del arreglo");
+                break;
+            }
+            tam = scanner.nextInt();
+            if (tam <= 0) {
+                System.out.println("El tamanio debe ser entero postivo mayor que cero");
+
+            } // 2
+
+        } while (tam <= 0);
+
+        int[] arreglo = new int[tam];
+
+        for (int i = 0; i < tam; i++) {
+
+            arreglo[i] = LeerEnteroValido(scanner, "Elemento" + (i + 1) + ":", false);
+        }
+        for (int i : arreglo) {
+            System.out.print(i + ",");
+        }
+        scanner.close();
+       
     }
+
+    public static int LeerEnteroValido(Scanner scanner, String mensaje, boolean permitirNegativos) {
+        int numero;
+        do {
+
+            while (!scanner.hasNextInt()) {
+                System.out.println("Entrada invalida");
+                scanner.nextInt();
+            }
+            numero = scanner.nextInt();
+            if (!permitirNegativos && numero < 0) {
+                System.out.println(" No se permiten negativos");
+
+            }
+
+        } while (!permitirNegativos && numero < 0);
+        return numero;
+
+    }
+
 }
