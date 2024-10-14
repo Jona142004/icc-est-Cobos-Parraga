@@ -1,51 +1,55 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Interfaz {
 
-    int[] arreglo;
-    Scanner scanner = new Scanner(System.in);
-    boolean logs;
-    boolean ascendente;
+    private int[] arreglo;
+    private final Scanner scanner;
+    private boolean logs;
+    private boolean ascendente;
 
-    // Ingreso de numeros del arreglo
-    public int[] ingresoArreglo(int tamanio){
-        int [] arreglo = new int[tamanio];
-        for(int k = 0; k < tamanio; k++ ){
-            arreglo[k] = leerEnteroValido(scanner, "Ingrese el valor de la posicion " + (k+1), true);
+    public Interfaz(Scanner scanner) {
+        this.scanner = scanner;
+
+    }
+
+    // Ingreso de arreglo
+    public int[] ingresoArreglo(int tamanio) {
+        int[] arreglo = new int[tamanio];
+        for (int k = 0; k < tamanio; k++) {
+            arreglo[k] = leerEnteroValido("Ingrese el valor de la posición " + (k + 1), true);
         }
         return arreglo;
     }
 
-    //Imprimir el arreglo
-    public void printArreglo(int[] arreglo){
+    // Imprimir el arreglo
+    public void printArreglo(int[] arreglo) {
         System.out.println("El arreglo ingresado es: ");
-        for(int elemento : arreglo){           //for each 
-            System.out.print(elemento + ", ");     // Imprimir arreglo ingresado
+        for (int elemento : arreglo) {
+            System.out.print(elemento + ", ");
         }
         System.out.println();
     }
 
-    //Validar los valores del tamanio y el arreglo
-    public int leerEnteroValido(Scanner scanner, String mensaje, boolean permitirNegativo){
+    // Validar los valores del tamaño y el arreglo
+    public int leerEnteroValido(String mensaje, boolean permitirNegativo) {
         int numero;
-        do{
+        do {
             System.out.println(mensaje);
-            while(!scanner.hasNextInt()){   //hasNextIn devuelve true si y solo si el valor ingresado es un entero positivo
-                System.out.println("Ingrese un entero valido");
-                System.out.println(mensaje);
+            while (!scanner.hasNextInt()) {
+                System.out.println("Ingrese un entero válido");
                 scanner.next();
             }
             numero = scanner.nextInt();
-            if(!permitirNegativo && numero <= 0 ){
-                System.out.println("El tamanio debe ser entero mayor a 0");
+            if (!permitirNegativo && numero <= 0) {
+                System.out.println("El tamaño debe ser un entero mayor a 0");
             }
-        }while(!permitirNegativo && numero <= 0);
+        } while (!permitirNegativo && numero <= 0);
         return numero;
     }
 
-    
-    //Menu principal
-    public boolean menuPrincipal(Scanner ingreso){
+    // Menú principal
+    public boolean menuPrincipal() {
         int primeraOpcion;
         boolean fin = false;
         boolean validarOrden = false;
@@ -57,114 +61,129 @@ public class Interfaz {
             System.out.println("Elige una opción: ");
 
             if (scanner.hasNextInt()) {
-                primeraOpcion = scanner.nextInt(); //Ingreso de opcion por consola
+                primeraOpcion = scanner.nextInt();
                 scanner.nextLine();
-
-                switch(primeraOpcion){
-                    case 1: {
-                        int tamanio = leerEnteroValido(scanner, "Ingrese el tamanio del arreglo", false);
+                switch (primeraOpcion) {
+                    case 1:
+                        int tamanio = leerEnteroValido("Ingrese el tamaño del arreglo", false);
                         arreglo = ingresoArreglo(tamanio);
                         printArreglo(arreglo);
                         validarOrden = true;
                         break;
-                    }
-                    case 2:{
-                        // Ir al menu de Ordenamiento
-                        if (validarOrden){
-                            menuOrdenamiento(scanner); //menuOrdenamiento devuelve un booleano 
+                    case 2:
+                        if (validarOrden) {
+                            menuOrdenamiento();
                         } else {
-                            System.out.println("Primero debe de ingresar un arreglo");
+                            System.out.println("Primero debe ingresar un arreglo.");
                         }
                         break;
-                    }
-                    case 0:{
+                    case 0:
                         fin = true;
                         break;
-                    }
                     default:
-                    System.out.println("Opción no válida. Inténtalo de nuevo.");
+                        System.out.println("Opción no válida. Inténtalo de nuevo.");
                 }
             } else {
-                System.out.println("Por favor, ingresa un número.");                // Si no es un entero, mostrar mensaje de error y limpiar el buffer
-                scanner.nextLine(); 
+                System.out.println("Por favor, ingresa un número.");
+                scanner.nextLine();
             }
-        } 
+        }
         return fin;
     }
 
-    // Menu de Ordenamiento
-    public boolean menuOrdenamiento(Scanner scanner){
+    // Menú de Ordenamiento
+    public void menuOrdenamiento() {
         int segundaOpcion;
-
-        while(true){
+        Metodos metodos = new Metodos();
+        while (true) {
             System.out.println("MENU DE ORDENAMIENTO");
-            System.out.println("(1) Metodo Burbuja");
-            System.out.println("(2) Metodo Seleccion");
-            System.out.println("(3) Metodo Insercion");
-            System.out.println("(4) Metodo Burbuja Mejorado");
-            System.out.println("(0) Regresar al menu principal");
+            System.out.println("(1) Método Burbuja");
+            System.out.println("(2) Método Selección");
+            System.out.println("(3) Método Inserción");
+            System.out.println("(4) Método Burbuja Mejorado");
+            System.out.println("(0) Regresar al menú principal");
             System.out.println("Elige una opción: ");
 
-
-            if (scanner.hasNextInt()) { 
-                //Validar que no ingrese nada diferente de un entero positivo
-                segundaOpcion = scanner.nextInt(); //Ingreso de opcion por consola
+            if (scanner.hasNextInt()) {
+                segundaOpcion = scanner.nextInt();
                 scanner.nextLine();
-                
-                switch(segundaOpcion){
-                    case 1: {
-                        Metodos metodos = new Metodos();
-                        menuOrdenPrint();
-                        arreglo = metodos.burbuja(arreglo, logs, ascendente);
-                        printArreglo(arreglo);
+                switch (segundaOpcion) {
+                    case 1:
+                    menuOrdenPrint();
+                    int[] copiaBurbuja = Arrays.copyOf(arreglo, arreglo.length);
+                    metodos.burbuja(copiaBurbuja, logs, ascendente);
+                    metodos.printArreglo(copiaBurbuja);
                         break;
-                    }
-                    case 2:{
-                        Metodos metodos = new Metodos();
-                        menuOrdenPrint();
-                        arreglo = metodos.seleccion(arreglo, logs, ascendente);
-                        printArreglo(arreglo);
+                    case 2:
+                    menuOrdenPrint();
+                      int[] copiaSeleccion = Arrays.copyOf(arreglo, arreglo.length);
+                    metodos.seleccion(copiaSeleccion, logs, ascendente);
+                    metodos.printArreglo(copiaSeleccion);
                         break;
-                    }
-                    case 3:{
-                        Metodos metodos = new Metodos();
-                        menuOrdenPrint();
-                        arreglo = metodos.insercion(arreglo, logs, ascendente);
-                        printArreglo(arreglo);
+                    case 3:
+                    menuOrdenPrint();
+                    int[] copiaInsercion = Arrays.copyOf(arreglo, arreglo.length);
+                    metodos.insercion(copiaInsercion, logs, ascendente);                        
+                    metodos.printArreglo(copiaInsercion);
                         break;
-                    }
-                    case 4:{
-                        Metodos metodos = new Metodos();
-                        menuOrdenPrint();
-                        arreglo = metodos.BubbleTeaAva(arreglo, logs, ascendente);
-                        printArreglo(arreglo);
+                    case 4:
+                    menuOrdenPrint();
+                    int[] copiaBurbujaMejorada = Arrays.copyOf(arreglo, arreglo.length);
+                    metodos.BubbleTeaAva(copiaBurbujaMejorada, logs, ascendente);
+                    metodos.printArreglo(copiaBurbujaMejorada);
                         break;
-                    }
-                    case 0:{
-                        System.out.println("Regresando al menu principal...");
-                        return false;
-                    }
+                    case 0:
+                        return;
                     default:
-                    System.out.println("Opción no válida. Inténtalo de nuevo.");
+                        System.out.println("Opción no válida. Inténtalo de nuevo.");
                 }
             } else {
-                System.out.println("Por favor, ingresa un número."); // Si no es un entero, mostrar mensaje de error y limpiar el buffer
-                scanner.nextLine(); 
+                System.out.println("Por favor, ingresa un número.");
+                scanner.nextLine();
             }
         }
     }
-    public void menuOrdenPrint(){
+
+    // Imprimir menú de orden
+    public void menuOrdenPrint() {
         System.out.println("Elija el tipo de orden:");
         System.out.println("1. Ascendente");
         System.out.println("2. Descendente");
-        int tipoOrden = scanner.nextInt();
-        ascendente = tipoOrden == 1;
-
-        System.out.println("Desea imprimir el proceso (logs)?");
-        System.out.println("1. Si");
+        
+        // Leer tipo de orden y validar
+        int tipoOrden = leerEnteroValido("Ingrese el orden deseado ", true);
+        while (tipoOrden != 1 && tipoOrden != 2) {
+            System.out.println("Opción no válida");
+            System.out.println("1. Ascendente");
+            System.out.println("2. Descendente");
+            tipoOrden = leerEnteroValido("Ingrese el orden deseado ", true);
+        }
+        // Asignar el valor de ascendente
+        ascendente = (tipoOrden == 1);
+    
+        // Preguntar si desea imprimir los logs
+        System.out.println("¿Desea imprimir el proceso (logs)?");
+        System.out.println("1. Sí");
         System.out.println("2. No");
-        int opcionLogs = scanner.nextInt();
-        logs = opcionLogs == 1;
+        
+        // Leer opción de logs y validar
+        int opcionLogs = leerEnteroValido("Ingrese si desea ver logs ", true);
+        while (opcionLogs != 1 && opcionLogs != 2) {
+            System.out.println("Opción no válida");
+            System.out.println("1. Sí");
+            System.out.println("2. No");
+            opcionLogs = leerEnteroValido("Ingrese si desea ver logs ", true);
+        }
+        // Asignar el valor de logs
+        logs = (opcionLogs == 1);
+        
+        // Mensaje de confirmación de elecciones
+        System.out.println("Orden: " + (ascendente ? "Ascendente" : "Descendente"));
+        System.out.println("Logs: " + (logs ? "Activados" : "Desactivados"));
     }
     
 }
+
+
+
+
