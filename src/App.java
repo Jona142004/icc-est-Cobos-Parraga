@@ -8,12 +8,13 @@ public class App {
         boolean terminarPrograma = false;
         while (!terminarPrograma) {
             terminarPrograma = interfaz.menuPrincipal(scanner);
+            interfaz.menuOrdenPrint();
             // Solo llamar a menuOrdenPrint si no se ha terminado el programa
             if (!terminarPrograma) {
-                interfaz.menuOrdenPrint();
+                
             }
         }
         System.out.println("Programa terminado.");
-        scanner.close(); // Cerrar el scanner
+        scanner.close(); // Cerrar el scannerE
     }
 }
