@@ -110,34 +110,34 @@ public class Interfaz {
                 //Validar que no ingrese nada diferente de un entero positivo
                 segundaOpcion = scanner.nextInt(); //Ingreso de opcion por consola
                 scanner.nextLine();
-
+                
                 switch(segundaOpcion){
                     case 1: {
                         Metodos metodos = new Metodos();
+                        menuOrdenPrint();
                         arreglo = metodos.burbuja(arreglo, logs, ascendente);
                         printArreglo(arreglo);
-                        
                         break;
                     }
                     case 2:{
                         Metodos metodos = new Metodos();
+                        menuOrdenPrint();
                         arreglo = metodos.seleccion(arreglo, logs, ascendente);
                         printArreglo(arreglo);
                         break;
                     }
                     case 3:{
                         Metodos metodos = new Metodos();
+                        menuOrdenPrint();
                         arreglo = metodos.insercion(arreglo, logs, ascendente);
                         printArreglo(arreglo);
-                        
                         break;
                     }
                     case 4:{
                         Metodos metodos = new Metodos();
+                        menuOrdenPrint();
                         arreglo = metodos.BubbleTeaAva(arreglo, logs, ascendente);
                         printArreglo(arreglo);
-                        
-                        
                         break;
                     }
                     case 0:{

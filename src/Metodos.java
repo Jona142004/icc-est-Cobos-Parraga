@@ -1,8 +1,44 @@
 import java.util.Arrays;
 
 public class Metodos {
-    public int[] burbuja(int[] arreglo, boolean logs, boolean ascendente) {
+    Scanner scanner = new Scanner(System.in);
+    Interfaz interfaz = new Interfaz();
+    public  void menuOrdenPrint (Scanner scanner, boolean ascendente, boolean logs){
+        System.out.println("Elija el tipo de orden:");
+        System.out.println("1. Ascendente");
+        System.out.println("2. Descendente");
+        int tipoOrden = interfaz.leerEnteroValido(scanner, "Ingrese el orden deseado ", false);
+        switch (tipoOrden) {
+            case 1:
+                ascendente = true;
+                break;
+            case 2:
+                ascendente = false;
+                break;
+            default:
+                System.out.println("Opcion no valida");
+                break;
+        }
 
+        System.out.println("Desea imprimir el proceso (logs)?");
+        System.out.println("1. Si");
+        System.out.println("2. No");
+        int opcionLogs = interfaz.leerEnteroValido(scanner, "Ingrese el orden deseado ", false);
+        switch (opcionLogs) {
+            case 1:
+                logs = true;
+                break;
+            case 2:
+                logs = false;
+                break;
+            default:
+                break;
+        }
+        scanner.close();
+    } 
+    
+    
+    public int[] burbuja(int[] arreglo, boolean logs, boolean ascendente) {
         int n = arreglo.length;
         for (int i = 0; i < n; i++) {
             if (logs) {
