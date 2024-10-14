@@ -103,7 +103,6 @@ public class Interfaz {
             System.out.println("(0) Regresar al menu principal");
             System.out.println("Elige una opción: ");
 
-
             if (scanner.hasNextInt()) { 
                 //Validar que no ingrese nada diferente de un entero positivo
                 segundaOpcion = scanner.nextInt(); //Ingreso de opcion por consola
