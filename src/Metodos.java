@@ -3,7 +3,7 @@ public class Metodos {
 public int[] burbuja(int[] arreglo, boolean logs, boolean ascendente) {
     // Crear una copia del arreglo para no modificar el original
         int[] copiaArreglo = Arrays.copyOf(arreglo, arreglo.length);
-        int n = arreglo.length; // Usar copiaArreglo en lugar de arreglo
+        int n = arreglo.length; 
         for (int i = 0; i < n; i++) {
             if (logs) {
                 System.out.println("Pasada número " + i);
@@ -13,7 +13,7 @@ public int[] burbuja(int[] arreglo, boolean logs, boolean ascendente) {
                 if (ascendente ? (arreglo[i] > arreglo[j]) : (arreglo[i] < arreglo[j])) {
                     // Intercambio de elementos
                     int aux = arreglo[i]; // Usar arreglo para el intercambio
-                    arreglo[i] = arreglo[j]; // Intercambiar en copiaArreglo
+                    arreglo[i] = arreglo[j]; 
                     arreglo[j] = aux;
     
                     if (logs) {
