@@ -9,38 +9,40 @@ public class Metodos {
         System.out.println("Elija el tipo de orden:");
         System.out.println("1. Ascendente");
         System.out.println("2. Descendente");
-        int tipoOrden = interfaz.leerEnteroValido(scanner, "Ingrese el orden deseado ", false);
-        switch (tipoOrden) {
-            case 1:
+        int tipoOrden = interfaz.leerEnteroValido(scanner, "Ingrese el orden deseado ", true);
+        while (tipoOrden != 1 && tipoOrden != 2){
+            System.out.println("Opcion no valida");
+            System.out.println("1. Ascendente");
+            System.out.println("2. Descendente");
+            tipoOrden = interfaz.leerEnteroValido(scanner, "Ingrese el orden deseado ", true);
+            if (tipoOrden == 1){
                 ascendente = true;
-                break;
-            case 2:
+            } else{
                 ascendente = false;
-                break;
-            default:
-                System.out.println("Opcion no valida");
-                break;
+            }
         }
 
         System.out.println("Desea imprimir el proceso (logs)?");
         System.out.println("1. Si");
         System.out.println("2. No");
-        int opcionLogs = interfaz.leerEnteroValido(scanner, "Ingrese el orden deseado ", false);
-        switch (opcionLogs) {
-            case 1:
+        int opcionLogs = interfaz.leerEnteroValido(scanner, "Ingrese si desea ver logs ", true);
+        while (opcionLogs != 1 && opcionLogs != 2){
+            System.out.println("Opcion no valida");
+            System.out.println("1. Si");
+            System.out.println("2. No");
+            opcionLogs = interfaz.leerEnteroValido(scanner, "Ingrese si desea ver logs", true);
+            if (opcionLogs == 1){
                 logs = true;
-                break;
-            case 2:
+            } else{
                 logs = false;
-                break;
-            default:
-                break;
+            }
         }
-        scanner.close();
     } 
     
     
-    public int[] burbuja(int[] arreglo, boolean logs, boolean ascendente) {
+    public int[] burbuja(int[] arregloOriginal, boolean logs, boolean ascendente) {
+        int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
+        interfaz.printArreglo(arreglo);
         int n = arreglo.length;
         for (int i = 0; i < n; i++) {
             if (logs) {
@@ -53,9 +55,10 @@ public class Metodos {
                     arreglo[i] = arreglo[j];
                     arreglo[j] = aux;
                     if (logs) {
-                        System.out.println("\tResultado intermedio: " + Arrays.toString(arreglo));
+                        System.out.println("Intercambio realizado: " + Arrays.toString(arreglo));
                     }
                 }
+
             }
         }
         return arreglo;
@@ -87,12 +90,14 @@ public class Metodos {
                 arreglo[indiceMinimo] = arreglo[i];
                 arreglo[i] = numeromenor;
                 if (logs) {
-                    System.out.println("\tResultado intermedio: " + Arrays.toString(arreglo));
+                    System.out.println("Intercambio realizado: " + Arrays.toString(arreglo));
                 }
             }
         }
         return arreglo;
     }
+
+    
     public int[] insercion(int[] arreglo, boolean logs, boolean ascendente) {
         int tam = arreglo.length;
         for (int i = 1; i < tam; i++) {
@@ -136,8 +141,6 @@ public class Metodos {
             if(logs){
                 System.out.println("Pasada" + i);
             }
-            
-
             for (int j = 0; j < n - 1 - i; j++) {
                 if(logs){
                     System.out.println("j=" + j + "[j]=" + arreglo[j] + "j+1=" + j + 1 + "[j+1]=" + arreglo[j + 1]);
