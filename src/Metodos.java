@@ -2,31 +2,20 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Metodos {
-    Metodos metodos = new Metodos();
-    public  int menuOrdenPrint (Scanner scanner, boolean ascendente, boolean logs){
+    public  void menuOrdenPrint (Scanner scanner, boolean ascendente, boolean logs){
         System.out.println("Elija el tipo de orden:");
         System.out.println("1. Ascendente");
         System.out.println("2. Descendente");
         int tipoOrden = scanner.nextInt();
-        System.out.println("Desea imprimir el proceso (logs)?");
-        System.out.println("1. Si");
-        System.out.println("2. No");
-        int opcionLogs = scanner.nextInt();
-        if (tipoOrden == 1) {
-            ascendente = true;
-        } else if (tipoOrden == 2) {
-            ascendente = false;
-        } else {
-            System.out.println("Opción inválida, se seleccionará el orden ascendente por defecto.");
-            ascendente = true;
-        }
+        ascendente = tipoOrden == 1;
 
         System.out.println("Desea imprimir el proceso (logs)?");
         System.out.println("1. Si");
         System.out.println("2. No");
         int opcionLogs = scanner.nextInt();
-        logs = (opcionLogs == 1); 
-    }
+        logs = opcionLogs == 1;
+    } 
+    
     
     public int[] burbuja(int[] arreglo, boolean logs, boolean ascendente) {
 
@@ -122,12 +111,20 @@ public class Metodos {
         boolean intercambio = false;
 
         for (int i = 0; i < n; i++) {
-            System.out.println("Pasada" + i);
+            if(logs){
+                System.out.println("Pasada" + i);
+            }
+            
 
             for (int j = 0; j < n - 1 - i; j++) {
-                System.out.println("j=" + j + "[j]=" + arreglo[j] + "j+1=" + j + 1 + "[j+1]=" + arreglo[j + 1]);
+                if(logs){
+                    System.out.println("j=" + j + "[j]=" + arreglo[j] + "j+1=" + j + 1 + "[j+1]=" + arreglo[j + 1]);
+                }
                 if (arreglo[j] > arreglo[j + 1]) {
-                    System.out.println("Si hay cambio");
+                    if(logs){
+                        System.out.println("Si hay cambio");
+                    }
+                    
                     // Intercambio
                     int aux = arreglo[j];
                     arreglo[j] = arreglo[j + 1];
