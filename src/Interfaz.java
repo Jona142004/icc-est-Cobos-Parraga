@@ -143,14 +143,10 @@ public class Interfaz {
             }
         }
     }
-
-    // Imprimir menú de orden
     public void menuOrdenPrint() {
         System.out.println("Elija el tipo de orden:");
         System.out.println("1. Ascendente");
         System.out.println("2. Descendente");
-        
-        // Leer tipo de orden y validar
         int tipoOrden = leerEnteroValido("Ingrese el orden deseado ", true);
         while (tipoOrden != 1 && tipoOrden != 2) {
             System.out.println("Opción no válida");
@@ -158,15 +154,12 @@ public class Interfaz {
             System.out.println("2. Descendente");
             tipoOrden = leerEnteroValido("Ingrese el orden deseado ", true);
         }
-        // Asignar el valor de ascendente
         ascendente = (tipoOrden == 1);
     
         // Preguntar si desea imprimir los logs
         System.out.println("¿Desea imprimir el proceso (logs)?");
         System.out.println("1. Sí");
         System.out.println("2. No");
-        
-        // Leer opción de logs y validar
         int opcionLogs = leerEnteroValido("Ingrese si desea ver logs ", true);
         while (opcionLogs != 1 && opcionLogs != 2) {
             System.out.println("Opción no válida");
@@ -174,10 +167,7 @@ public class Interfaz {
             System.out.println("2. No");
             opcionLogs = leerEnteroValido("Ingrese si desea ver logs ", true);
         }
-        // Asignar el valor de logs
         logs = (opcionLogs == 1);
-        
-        // Mensaje de confirmación de elecciones
         System.out.println("Orden: " + (ascendente ? "Ascendente" : "Descendente"));
         System.out.println("Logs: " + (logs ? "Activados" : "Desactivados"));
     }
